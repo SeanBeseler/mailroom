@@ -11,9 +11,13 @@ def check_amount(p_amount):
             return False
     except ValueError:
         return False
-def addDic(dic , name):
+def adddic(dic , name):
     dic[name] = [0.00, 0 ,0.00]
     return dic
+def printdon(dic):
+    for x, val in enumerate(dic):
+        print()
+        print(val)
 
 def mail():
     dic = {'a': 1}
@@ -28,9 +32,7 @@ def mail():
                 i1 = input("Please input a name, for a list of donors type list: ")
                 if i1 == 'list':
                     dlist = list(dic.keys())
-                    for x , val in enumerate(dlist):
-                        print ()
-                        print(val)
+                    printdon(dlist)
                 elif i1 == 'name':
                     ex2 = True
                     while ex2:
@@ -41,5 +43,10 @@ def mail():
                                 print('hi')
                         else:
                             print("Please put in a corrrect amount")
+#work after this Jim
+
+
+
+#work after Chis
                     
 mail()
