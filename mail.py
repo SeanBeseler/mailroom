@@ -1,6 +1,12 @@
+"""."""
+import sys
+quit = ['Q', 'Quit']
+
+
 def check_amount(p_amount):
+    """."""
     try:
-        p_amount = p_amount.replace(',','')
+        p_amount = p_amount.replace(',', '')
         p_amount = float(p_amount)
         des = "%.2f" % p_amount
         t_des = p_amount - float(des)
@@ -11,52 +17,37 @@ def check_amount(p_amount):
             return False
     except ValueError:
         return False
-def adddic(dic , name):
-    dic[name] = [0.00, 0 ,0.00]
-    return dic
-def printdon(dic):
-    for x, val in enumerate(dic):
+
+
+def adddic(donor_info, name):
+    """."""
+    donor_info[name] = [0.00, 0, 0.00]
+    return donor_info
+
+
+def printdon(donor_info):
+    """."""
+    for x, val in enumerate(donor_info):
         print()
         print(val)
 
-def mail():
-    dic = {'a': 1}
-    ex = True
-    while(ex):
-        print()
-        i1 = input("To send a thank you press 1, to create a report press 2, to quit press q: ")
-        if int(i1) == 1:
-            ex1 = True
-            while(ex1):
-                print()
-                i1 = input("Please input a name, for a list of donors type list: ")
-                if i1 == 'list':
-                    dlist = list(dic.keys())
-                    printdon(dlist)
-                elif i1 == 'name':
-                    ex2 = True
-                    while ex2:
-                        amount =input("Please put in the donation amount: Must consist only numbers, for example $1,000 shoud be typed in as 1000")
-                        if check_amount(amount):
-                            print("here")
-                            if i1 not in dic:
-                                print('hi')
-                        else:
-                            print("Please put in a corrrect amount")
-#work after this Jim
-        elif il.lower() == 'c':
-            print('|       Name       |  #  |   Average   |    Total    |')
-            print('|------------------|-----|-------------|-------------|')
-            for donor in donor_info:
-                donor_name = cat_name_space(donor)
-                donor_num = cat_num_space(donor_info[donor][1])
-                donor_avg = cat_donation_space(donor_info[donor][2])
-                donor_total = cat_donation_space(donor_info[donor][0])
-                print('|{}|{}|{}|{}|').format(donor_name, donor_num, donor_avg, donor_total)
 
-#work after Chis
-                    
-mail()
+def updatdic(dic, name, amount):
+    diclist = dic.get(name)
+    diclist[0] = diclist[0] + amount
+    diclist[1] = diclist[1] + 1
+    tep = diclist[0]/float(diclist[1])
+    tep = "%.2f" % amount
+    diclist[2] = float(tep)
+    dic[name] = diclist
+    return dic
+
+
+def print_thank_you(name, amount):
+    head = 'Dear ' +name + ','
+    print(head)
+    body = "\tThank you for donation of $" + str(amount) + '. South Carolina Association of Magicians appreciate your support!'
+    print(body)
 
 
 def cat_name_space(donor):
@@ -89,3 +80,56 @@ def cat_donation_space(num):
         extra_spaces = 13 - len(num)
         extra_spaces = ' ' * extra_spaces
         return num + extra_spaces
+
+
+def mail():
+    """."""
+    donor_info = {'a': [10.0,1,10.0]}
+    ex = True
+    while(ex):
+        print()
+        i1 = input("Please choose: (T)hank you, (C)reate report, (Q)uit: ")
+        if i1 == 'T':
+            ex1 = True
+            while(ex1):
+                print()
+                i2 = input("Please input a name, for a list of donors type list: ")
+                if i2 == 'list':
+                    dlist = list(doner_info.keys())
+                    printdon(dlist)
+                elif type(i2) == str:
+                    ex2 = True
+                    while ex2:
+                        user_input =input("Please put in the donation amount: Must consist only numbers, for example $1,000 shoud be typed in as 1000")
+                        amount = check_amount(user_input)
+                        if user_input in quit:
+                            ex1 = False
+                            ex2 = False
+                        elif amount >= 0 and amount is not False:
+                            if i2 not in doner_info:
+                                dic = adddic(doner_info, i1)
+                            dic =updatdic(doner_info, i1, amount)
+                            print_thank_you(i2, amount)
+                            ex2 = False
+                            ex1 = False
+                        else:
+                            print("Please put in a correct amount")
+                elif i2 in quit:
+                    ex1 = False
+#work after this Jim
+        elif il.lower() == 'c':
+            print('|       Name       |  #  |   Average   |    Total    |')
+            print('|------------------|-----|-------------|-------------|')
+            for donor in donor_info:
+                donor_name = cat_name_space(donor)
+                donor_num = cat_num_space(donor_info[donor][1])
+                donor_avg = cat_donation_space(donor_info[donor][2])
+                donor_total = cat_donation_space(donor_info[donor][0])
+                print('|{}|{}|{}|{}|').format(donor_name, donor_num, donor_avg, donor_total)
+
+#work after Chis
+        elif i1 in quit:
+            sys.exit('\')
+
+mail()
+
