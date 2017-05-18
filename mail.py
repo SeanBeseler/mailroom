@@ -18,35 +18,52 @@ def printdon(dic):
     for x, val in enumerate(dic):
         print()
         print(val)
+def updatdic(dic, name, amount):
+    diclist = dic.get(name)
+    diclist[0] = diclist[0] + amount
+    diclist[1] = diclist[1] + 1
+    tep = diclist[0]/float(diclist[1])
+    tep = "%.2f" % amount
+    diclist[2] = float(tep)
+    dic[name] = diclist
+    return dic
+def print_thank_you(name, amount):
+    head = 'Dear ' +name + ','
+    print(head)
+    body = "\tThank you for donation of $" + str(amount) + '. South Carolina Association of Magicians appreciate your support!'
+    print(body)
 
 def mail():
-    dic = {'a': 1}
+    doner_info = {'a': [10.0,1,10.0]}
     ex = True
     while(ex):
         print()
-        i1 = input("To send a thank you press 1, to create a report press 2, to quit press q: ")
-        if int(i1) == 1:
+        i1 = input("To send a thank you press T, to create a report press C, to quit press Q: ")
+        if i1 == 'T':
             ex1 = True
             while(ex1):
                 print()
-                i1 = input("Please input a name, for a list of donors type list: ")
-                if i1 == 'list':
-                    dlist = list(dic.keys())
+                i2 = input("Please input a name, for a list of donors type list: ")
+                if i2 == 'list':
+                    dlist = list(doner_info.keys())
                     printdon(dlist)
-                elif i1 == 'name':
+                elif type(i2) == str:
                     ex2 = True
                     while ex2:
                         amount =input("Please put in the donation amount: Must consist only numbers, for example $1,000 shoud be typed in as 1000")
-                        if check_amount(amount):
-                            print("here")
-                            if i1 not in dic:
-                                print('hi')
+                        amount = check_amount(amount)
+                        if amount >= 0:
+                            if i2 not in doner_info:
+                                dic = adddic(doner_info, i1)
+                            dic =updatdic(doner_info, i1, amount)
+                            print_thank_you(i2, amount)
+                            ex2 = False
+                            ex1 = False
+                            
                         else:
                             print("Please put in a corrrect amount")
 #work after this Jim
 
-
-
 #work after Chis
-                    
+print_thank_you('sean', 10)                   
 mail()
