@@ -30,6 +30,8 @@ def printdon(donor_info):
     for x, val in enumerate(donor_info):
         print()
         print(val)
+
+
 def updatdic(dic, name, amount):
     diclist = dic.get(name)
     diclist[0] = diclist[0] + amount
@@ -39,11 +41,45 @@ def updatdic(dic, name, amount):
     diclist[2] = float(tep)
     dic[name] = diclist
     return dic
+
+
 def print_thank_you(name, amount):
     head = 'Dear ' +name + ','
     print(head)
     body = "\tThank you for donation of $" + str(amount) + '. South Carolina Association of Magicians appreciate your support!'
     print(body)
+
+
+def cat_name_space(donor):
+    """Add spaces to make the names the right length."""
+    if len(donor) > 18:
+        return donor[:19]
+    else:
+        extra_spaces = 18 - len(donor)
+        extra_spaces = ' ' * extra_spaces
+        return donor + extra_spaces
+
+
+def cat_num_space(num):
+    """Add spaces to make the number of donations the right length."""
+    num = str(num)
+    if len(num) > 5:
+        return num[:6]
+    else:
+        extra_spaces = 5 - len(num)
+        extra_spaces = ' ' * extra_spaces
+        return num + extra_spaces
+
+
+def cat_donation_space(num):
+    """Add spaces to make the total/average the right length."""
+    num = str(num)
+    if len(num) > 13:
+        return num[:14]
+    else:
+        extra_spaces = 13 - len(num)
+        extra_spaces = ' ' * extra_spaces
+        return num + extra_spaces
 
 
 def mail():
@@ -81,9 +117,19 @@ def mail():
                 elif i2 in quit:
                     ex1 = False
 #work after this Jim
+        elif il.lower() == 'c':
+            print('|       Name       |  #  |   Average   |    Total    |')
+            print('|------------------|-----|-------------|-------------|')
+            for donor in donor_info:
+                donor_name = cat_name_space(donor)
+                donor_num = cat_num_space(donor_info[donor][1])
+                donor_avg = cat_donation_space(donor_info[donor][2])
+                donor_total = cat_donation_space(donor_info[donor][0])
+                print('|{}|{}|{}|{}|').format(donor_name, donor_num, donor_avg, donor_total)
 
 #work after Chis
         elif i1 in quit:
             sys.exit('\')
 
 mail()
+
