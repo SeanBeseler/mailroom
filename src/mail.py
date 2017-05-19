@@ -54,6 +54,7 @@ def print_thank_you(name, amount):
     body = "Thank you for donation of $" + amount + '. South Carolina \
 Association of Magicians appreciate your support!\n\nSincerely,\nCode Dudes'
     print(body)
+    return body
 
 
 def cat_name_space(donor):
@@ -90,7 +91,7 @@ def cat_donation_space(num):
         return num + extra_spaces
 
 
-def mail():
+def mail(): # pragma: no cover
     """."""
     donor_info = {}
     ex = True
@@ -148,5 +149,5 @@ list: ")
             sys.exit('\nThank you. Goodbye.\n')
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
     mail()
