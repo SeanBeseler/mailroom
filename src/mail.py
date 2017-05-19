@@ -18,10 +18,12 @@ def check_amount(p_amount):
         return False
 
 
+
 def add_dic(donor_info, name):
     """."""
     donor_info[name] = [0.00, 0, 0.00]
     return donor_info
+
 
 
 def print_name(donor_info):
@@ -29,6 +31,7 @@ def print_name(donor_info):
     for x, val in enumerate(donor_info):
         print()
         print(val)
+
 
 
 def update_dic(dic, name, amount):
@@ -54,6 +57,7 @@ def print_thank_you(name, amount):
     body = "Thank you for donation of $" + amount + '. South Carolina \
 Association of Magicians appreciate your support!\n\nSincerely,\nCode Dudes'
     print(body)
+    return body
 
 
 def cat_name_space(donor):
@@ -90,7 +94,7 @@ def cat_donation_space(num):
         return num + extra_spaces
 
 
-def mail():
+def mail(): # pragma: no cover
     """."""
     donor_info = {}
     ex = True
@@ -105,7 +109,11 @@ def mail():
 list: ")
                 if i2 == 'list':
                     dlist = list(donor_info.keys())
+<<<<<<< HEAD
+                    printdon(dlist)
+=======
                     print_name(dlist)
+>>>>>>> 29354c743944eab8d16317ef66f4fe0fb9418f37
                 elif type(i2) == str:
                     i2 = i2.split(' ')
                     new_name = ''
@@ -149,5 +157,5 @@ list: ")
             break
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
     mail()

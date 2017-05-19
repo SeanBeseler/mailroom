@@ -11,6 +11,17 @@ TEST_CHECK_AMOUNT_OUTPUT = [
     ('1,000.10', 1000.10)
 ]
 
+THANK_YOU_PARAMS = [
+    ('bob', 100.0, 'Thank you for donation of $100.00. South Carolina \
+Association of Magicians appreciate your support!\n\nSincerely,\nCode Dudes'),
+    ('will', 1500.42, 'Thank you for donation of $1500.42. South Carolina \
+Association of Magicians appreciate your support!\n\nSincerely,\nCode Dudes'),
+    ('Tommy Wayne', 10.0, 'Thank you for donation of $10.00. South Carolina \
+Association of Magicians appreciate your support!\n\nSincerely,\nCode Dudes'),
+    ('John John', 3456.71, 'Thank you for donation of $3456.71. South Carolina \
+Association of Magicians appreciate your support!\n\nSincerely,\nCode Dudes')
+]
+
 
 @pytest.mark.parametrize('amount, result', TEST_CHECK_AMOUNT_OUTPUT)
 def test_check_amount(amount, result):
@@ -18,20 +29,13 @@ def test_check_amount(amount, result):
     from mail import check_amount
     assert check_amount(amount) == result
 
-'''
-def test_get_random():
-    """."""
-    from trigrams import get_random
-    for n in range(1, 100):
-        assert get_random(n) in range(n)
 
-
-def test_build_words():
+@pytest.mark.parametrize('name, amount, result', THANK_YOU_PARAMS)
+def test_print_thank_you(name, amount, result):
     """."""
-    from trigrams import build_words
-    for n in range(10, 100):
-        assert len(build_words(n, test_dict).split()) == n
-    '''
+    from mail import print_thank_you
+    assert print_thank_you(name, amount) == result
+
 
 UPDATE_PARAMS = [
     ({'James': [300.0, 1, 300.0], 'Sean': [100.0, 1, 100.0]}, 'James', 100.0, {'James': [400.0, 2, 200.0], 'Sean': [100.0, 1, 100.0]}),
@@ -87,3 +91,17 @@ def test_cat_donation_space(input, result):
     """Test to see if the right number of spaces are being added."""
     from mail import cat_donation_space
     assert cat_donation_space(input) == result
+
+
+def test_add_dic():
+    from mail import add_dic
+    dic = {}
+    name = 'sean'
+    rdic{'sean':[0.00,0,0.00]}
+    assert add_dic(dic, name) == rdic
+
+
+def print_name_test():
+    from mail import print_name
+    rdic{'sean':[0.00,0,0.00]}
+    assert print_name(rdic) == 'sean'
