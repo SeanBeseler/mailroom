@@ -18,12 +18,10 @@ def check_amount(p_amount):
         return False
 
 
-
 def add_dic(donor_info, name):
     """."""
     donor_info[name] = [0.00, 0, 0.00]
     return donor_info
-
 
 
 def print_name(donor_info):
@@ -31,7 +29,6 @@ def print_name(donor_info):
     for x, val in enumerate(donor_info):
         print()
         print(val)
-
 
 
 def update_dic(dic, name, amount):
@@ -43,7 +40,6 @@ def update_dic(dic, name, amount):
     tep = "%.2f" % tep
     diclist[2] = float(tep)
     dic[name] = diclist
-    print(dic)
     return dic
 
 
@@ -94,7 +90,7 @@ def cat_donation_space(num):
         return num + extra_spaces
 
 
-def mail(): # pragma: no cover
+def mail():  # pragma: no cover
     """."""
     donor_info = {}
     ex = True
@@ -109,11 +105,7 @@ def mail(): # pragma: no cover
 list: ")
                 if i2 == 'list':
                     dlist = list(donor_info.keys())
-<<<<<<< HEAD
-                    printdon(dlist)
-=======
                     print_name(dlist)
->>>>>>> 29354c743944eab8d16317ef66f4fe0fb9418f37
                 elif type(i2) == str:
                     i2 = i2.split(' ')
                     new_name = ''
@@ -157,5 +149,5 @@ list: ")
             break
 
 
-if __name__ == '__main__': # pragma: no cover
+if __name__ == '__main__':  # pragma: no cover
     mail()

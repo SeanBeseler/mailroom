@@ -97,11 +97,11 @@ def test_add_dic():
     from mail import add_dic
     dic = {}
     name = 'sean'
-    rdic{'sean':[0.00,0,0.00]}
+    rdic = {'sean': [0.00, 0, 0.00]}
     assert add_dic(dic, name) == rdic
 
 
 def print_name_test():
     from mail import print_name
-    rdic{'sean':[0.00,0,0.00]}
+    rdic = {'sean': [0.00, 0, 0.00]}
     assert print_name(rdic) == 'sean'
