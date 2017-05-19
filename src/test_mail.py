@@ -50,7 +50,7 @@ CAT_DONOR_PARAMS = [
     (13.0, '         13.00'),
     ('25890012', '      25890012'),
     (1213421, '       1213421'),
-    ('12345678901.23', '12345678901.23')
+    ('123456789012.23', '...56789012.23')
 ]
 
 
@@ -68,9 +68,16 @@ NAME_LIST_PARAMS = [
 ]
 
 
+BIG_DONOR_PARAMS = [
+    ('123456789012.23', '123456789012.23'),
+    ('123454229012.2', '123454229012.20'),
+    ('999999999999.0', '999999999999.00'),
+]
+
+
 @pytest.mark.parametrize('amount, result', TEST_CHECK_AMOUNT_OUTPUT)
 def test_check_amount(amount, result):
-    """Test if input was a valid amount and convert to float(for change)."""
+    """Test if amount was a valid amount and convert to float(for change)."""
     from mail import check_amount
     assert check_amount(amount) == result
 
@@ -89,25 +96,25 @@ def test_update_dic(dictionary, name, float, result):
     assert update_dic(dictionary, name, float) == result
 
 
-@pytest.mark.parametrize('input, result', CAT_NAME_PARAMS)
-def test_cat_name_space(input, result):
+@pytest.mark.parametrize('name, result', CAT_NAME_PARAMS)
+def test_cat_name_space(name, result):
     """Test to see if the right number of spaces are being added."""
     from mail import cat_name_space
-    assert cat_name_space(input) == result
+    assert cat_name_space(name) == result
 
 
-@pytest.mark.parametrize('input, result', CAT_NUM_PARAMS)
-def test_cat_num_space(input, result):
+@pytest.mark.parametrize('amount, result', CAT_NUM_PARAMS)
+def test_cat_num_space(amount, result):
     """Test to see if the right number of spaces are being added."""
     from mail import cat_num_space
-    assert cat_num_space(input) == result
+    assert cat_num_space(amount) == result
 
 
-@pytest.mark.parametrize('input, result', CAT_DONOR_PARAMS)
-def test_cat_donation_space(input, result):
+@pytest.mark.parametrize('amount, result', CAT_DONOR_PARAMS)
+def test_cat_donation_space(amount, result):
     """Test to see if the right number of spaces are being added."""
     from mail import cat_donation_space
-    assert cat_donation_space(input) == result
+    assert cat_donation_space(amount) == result
 
 
 @pytest.mark.parametrize('donor_info, name, result', NEW_DONOR_PARAMS)
@@ -122,3 +129,10 @@ def test_print_name(donor_list, result):
     """Test if we print the list of donors properly."""
     from mail import print_name
     assert print_name(donor_list) == result
+
+
+@pytest.mark.parametrize('amount, result', BIG_DONOR_PARAMS)
+def test_big_donor_total(amount, result):
+    """Test for reassigning larger donations."""
+    from mail import big_donor_total
+    assert big_donor_total(amount) == result
