@@ -1,5 +1,4 @@
 """."""
-import sys
 quit = ['q', 'quit']
 
 
@@ -44,6 +43,7 @@ def update_dic(dic, name, amount):
     tep = "%.2f" % tep
     diclist[2] = float(tep)
     dic[name] = diclist
+    print(dic)
     return dic
 
 
@@ -153,7 +153,8 @@ list: ")
             else:
                 print('\nYou have no donors yet.')
         elif i1 in quit:
-            sys.exit('\nThank you. Goodbye.\n')
+            print('\nThank you. Goodbye.\n')
+            break
 
 
 if __name__ == '__main__': # pragma: no cover
