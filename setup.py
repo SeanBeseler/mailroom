@@ -2,12 +2,11 @@
 from setuptools import setup
 
 extra_packages = {
-    'testing': ['ipython', 'pytest', 'pytest-watch', 'pytest-cov',
-                'test_mail.py', 'tox']
+    'testing': ['ipython', 'pytest', 'pytest-watch', 'pytest-cov', 'test_mail.py', 'tox']
 }
 
 setup(
-    name='trigrams',
+    name='mailroom',
     desctription='Implements the Mail program.',
     version='0.1',
     author='Chris Hudson, James Feore, Sean Beseler',
@@ -19,7 +18,7 @@ setup(
     extras_require=extra_packages,
     entry_points={
         'console_scriptes': [
-            'mail = mail:main'
+            'mailroom = mailroom:main'
         ]
     }
 )
