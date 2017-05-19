@@ -2,7 +2,8 @@
 from setuptools import setup
 
 extra_packages = {
-    'testing': ['ipython', 'pytest', 'pytest-watch', 'pytest-cov', 'test_mail.py', 'tox']
+    'testing': ['ipython', 'pytest', 'pytest-watch', 'pytest-cov',
+                'test_mail.py', 'tox']
 }
 
 setup(

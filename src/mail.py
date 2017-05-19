@@ -91,9 +91,22 @@ def cat_donation_space(num):
     num = str(num)
     if num[len(num) - 2] == '.':
         num = num + '0'
+    if len(num) > 14:
+        num = '...' + num[-11:]
     extra_spaces = 14 - len(num)
     extra_spaces = ' ' * extra_spaces
     return extra_spaces + num
+
+
+def big_donor_total(num):
+    """Pirnt the totals for donors to large for the table."""
+    full_total = ''
+    num = str(num)
+    if num[len(num) - 2] == '.':
+        num = num + '0'
+    if len(num) > 13:
+        full_total = num
+    return full_total
 
 
 def main():  # pragma: no cover
@@ -138,7 +151,7 @@ donation amount: ")
                             amount_loop = False
                         elif amount >= 0 and amount is not False:
                             if input_two not in donor_info:
-                                donor_info = new_donor()(donor_info, input_two)
+                                donor_info = new_donor(donor_info, input_two)
                             donor_info = update_dic(donor_info,
                                                     input_two, amount)
                             print_thank_you(input_two, amount)
@@ -152,6 +165,7 @@ donation amount: ")
                     print('\nTry that again, maybe don\'t use numbers')
         elif input_one == 'c':
             if donor_info:
+                print()
                 print(' ____________________________________________________ ')
                 print('|      Donors      | # |    Average   |     Total    |')
                 print('|       Name       |   |   Donations  |   Donations  |')
@@ -164,6 +178,9 @@ donation amount: ")
                     print('|{}|{}|{}|{}|'.format(donor_name, donations,
                                                  donation_avg, donor_total))
                 print('|__________________|___|______________|______________|')
+                for donor in donor_info:
+                    big_donor = big_donor_total(donor_info[donor][0])
+                    print('\n', donor, 'has donated:', '${}'.format(big_donor))
             else:
                 print('\nYou have no donors yet.')
         elif input_one == 'q':
