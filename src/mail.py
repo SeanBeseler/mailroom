@@ -19,20 +19,23 @@ def check_amount(p_amount):
         return False
 
 
-def adddic(donor_info, name):
+
+def add_dic(donor_info, name):
     """."""
     donor_info[name] = [0.00, 0, 0.00]
     return donor_info
 
 
-def printdon(donor_info):
+
+def print_name(donor_info):
     """."""
     for x, val in enumerate(donor_info):
         print()
         print(val)
 
 
-def updatedic(dic, name, amount):
+
+def update_dic(dic, name, amount):
     """."""
     diclist = dic.get(name)
     diclist[0] = diclist[0] + amount
@@ -105,7 +108,11 @@ def mail():
 list: ")
                 if i2 == 'list':
                     dlist = list(donor_info.keys())
+<<<<<<< HEAD
                     printdon(dlist)
+=======
+                    print_name(dlist)
+>>>>>>> 29354c743944eab8d16317ef66f4fe0fb9418f37
                 elif type(i2) == str:
                     i2 = i2.split(' ')
                     new_name = ''
@@ -122,8 +129,8 @@ list: ")
                             ex2 = False
                         elif amount >= 0 and amount is not False:
                             if i2 not in donor_info:
-                                donor_info = adddic(donor_info, i2)
-                            donor_info = updatedic(donor_info, i2, amount)
+                                donor_info = add_dic(donor_info, i2)
+                            donor_info = update_dic(donor_info, i2, amount)
                             print_thank_you(i2, amount)
                             ex2 = False
                             ex1 = False
@@ -145,6 +152,8 @@ list: ")
             else:
                 print('\nYou have no donors yet.')
         elif i1 in quit:
-            sys.exit('Thank you. Goodbye.')
+            sys.exit('\nThank you. Goodbye.\n')
 
-mail()
+
+if __name__ == '__main__':
+    mail()
