@@ -2,8 +2,7 @@
 from setuptools import setup
 
 extra_packages = {
-    'testing': ['ipython', 'pytest', 'pytest-watch', 'pytest-cov',
-                'test_mail.py', 'tox']
+    'testing': ['ipython', 'pytest', 'pytest-watch', 'pytest-cov', 'tox']
 }
 
 setup(
@@ -18,7 +17,7 @@ setup(
     install_requires=[],
     extras_require=extra_packages,
     entry_points={
-        'console_scriptes': [
+        'console_scripts': [
             'mailroom = mailroom:main'
         ]
     }
