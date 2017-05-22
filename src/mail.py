@@ -50,10 +50,6 @@ def update_dic(donor_list, name, amount):
     average = "%.2f" % average
     donor[2] = float(average)
     donor_list[name] = donor
-    sorted_donor_list = []
-    for donor_name in donor_list:
-        sorted_donor_list[donor_name, donor_list[donor_name][0]]
-    donor_list = sorted_donor_list
     return donor_list
 
 
