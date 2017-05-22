@@ -24,8 +24,8 @@ def check_amount(donation):
 
 
 def new_donor(donor_info, name):
-    """Assign name to key with defualt value set."""
-    donor_info[name] = [0.00, 0, 0.00]
+    """Assign name to donor_name with defualt value set."""
+    donor_info[name] = [0.00, 0, 0.00, []]
     return donor_info
 
 
@@ -45,22 +45,29 @@ def update_dic(donor_list, name, amount):
     donor = donor_list.get(name)
     donor[0] = donor[0] + amount
     donor[1] = donor[1] + 1
+    donor[3].append(amount)
     average = donor[0] / float(donor[1])
     average = "%.2f" % average
     donor[2] = float(average)
     donor_list[name] = donor
+    sorted_donor_list = []
+    for donor_name in donor_list:
+        sorted_donor_list[donor_name, donor_list[donor_name][0]]
+    donor_list = sorted_donor_list
     return donor_list
 
 
 def print_thank_you(name, amount):
     """Create a thank you e-mail."""
-    head = '\nDear ' + name + ',\n'
+    head = '\nDear {},\n'.format(name)
     print(head)
     amount = str(amount)
     if amount[len(amount) - 2] == '.':
         amount = amount + '0'
-    body = "Thank you for donation of $" + amount + '. \nSouth Carolina \
-Association of Magicians appreciate your support!\n\nSincerely,\nCode Dudes'
+    body = '''Thank you for donation of ${}.
+South Carolina Association of Magicians appreciate your support!
+Sincerely,
+Code Dudes'''.format(amount)
     print(body)
     return body
 
@@ -104,8 +111,7 @@ def big_donor_total(num):
     num = str(num)
     if num[len(num) - 2] == '.':
         num = num + '0'
-    if len(num) > 13:
-        full_total = num
+    full_total = num
     return full_total
 
 
@@ -131,11 +137,17 @@ def main():  # pragma: no cover
                 print()
                 input_two = input("Please input a full name, for a list of donors \
 type list: ")
+                check_alpha = True
                 if input_two == 'list':
-                    donor_list = list(donor_info.keys())
+                    donor_list = list(donor_info.donor_names())
                     print_name(donor_list)
-                elif str.isalpha(input_two):
-                    input_two = input_two.split(' ')
+                input_two = input_two.split(' ')
+                for line in input_two:
+                    if str.isnumeric(line):
+                        check_alpha = False
+                if check_alpha:
+                    if input_two == 'q':
+                        donation_loop = False
                     new_name = ''
                     for word in input_two:
                         word = word.title()
@@ -159,8 +171,6 @@ donation amount: ")
                             donation_loop = False
                         else:
                             print("Please enter a new value.\n")
-                elif input_two == 'q':
-                    donation_loop = False
                 else:
                     print('\nTry that again, maybe don\'t use numbers')
         elif input_one == 'c':
@@ -179,8 +189,9 @@ donation amount: ")
                                                  donation_avg, donor_total))
                 print('|__________________|___|______________|______________|')
                 for donor in donor_info:
-                    big_donor = big_donor_total(donor_info[donor][0])
-                    print('\n', donor, 'has donated:', '${}'.format(big_donor))
+                    if len(str(donor_info[donor][0])) > 13:
+                        big_donor = big_donor_total(donor_info[donor][0])
+                        print('\n', donor, 'has donated:', '${}'.format(big_donor))
             else:
                 print('\nYou have no donors yet.')
         elif input_one == 'q':
