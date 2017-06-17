@@ -62,6 +62,7 @@ def print_thank_you(name, amount):
         amount = amount + '0'
     body = '''Thank you for donation of ${}.
 South Carolina Association of Magicians appreciate your support!
+
 Sincerely,
 Code Dudes'''.format(amount)
     print(body)

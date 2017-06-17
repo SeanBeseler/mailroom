@@ -13,22 +13,24 @@ TEST_CHECK_AMOUNT_OUTPUT = [
 ]
 
 THANK_YOU_PARAMS = [
-    ('bob', 100.0, 'Thank you for donation of $100.00. \nSouth Carolina \
+    ('bob', 100.0, 'Thank you for donation of $100.00.\nSouth Carolina \
 Association of Magicians appreciate your support!\n\nSincerely,\nCode Dudes'),
-    ('will', 1500.42, 'Thank you for donation of $1500.42. \nSouth Carolina \
+    ('will', 1500.42, 'Thank you for donation of $1500.42.\nSouth Carolina \
 Association of Magicians appreciate your support!\n\nSincerely,\nCode Dudes'),
-    ('Tommy Wayne', 10.0, 'Thank you for donation of $10.00. \nSouth Carolina \
+    ('Tommy Wayne', 10.0, 'Thank you for donation of $10.00.\nSouth Carolina \
 Association of Magicians appreciate your support!\n\nSincerely,\nCode Dudes'),
-    ('John John', 3456.71, 'Thank you for donation of $3456.71. \nSouth Carolina \
+    ('John John', 3456.71, 'Thank you for donation of $3456.71.\nSouth Carolina \
 Association of Magicians appreciate your support!\n\nSincerely,\nCode Dudes')
 ]
 
 
 UPDATE_PARAMS = [
-    ({'James': [300.0, 1, 300.0], 'Sean': [100.0, 1, 100.0]},
-     'James', 100.0, {'James': [400.0, 2, 200.0], 'Sean': [100.0, 1, 100.0]}),
-    ({'James': [300.0, 1, 300.0], 'Sean': [100.0, 1, 100.0]},
-     'Sean', 2000.0, {'James': [300.0, 1, 300.0], 'Sean': [2100.0, 2, 1050.0]})
+    ({'James': [300.0, 1, 300.0, [300.0]], 'Sean': [100.0, 1, 100.0, [100.0]]},
+     'James', 100.0, {'James': [400.0, 2, 200.0, [300.0, 100.0]],
+                      'Sean': [100.0, 1, 100.0, [100.0]]}),
+    ({'James': [300.0, 1, 300.0, [300.0]], 'Sean': [100.0, 1, 100.0, [100.0]]},
+     'Sean', 2000.0, {'James': [300.0, 1, 300.0, [300.0]],
+                      'Sean': [2100.0, 2, 1050.0, [100.0, 2000.0]]})
 ]
 
 CAT_NAME_PARAMS = [
@@ -55,9 +57,9 @@ CAT_DONOR_PARAMS = [
 
 
 NEW_DONOR_PARAMS = [
-    ({}, 'James', {'James': [0.00, 0, 0.00]}),
-    ({}, 'Ash', {'Ash': [0.00, 0, 0.00]}),
-    ({}, 'Haily Joe', {'Haily Joe': [0.00, 0, 0.00]})
+    ({}, 'James', {'James': [0.00, 0, 0.00, []]}),
+    ({}, 'Ash', {'Ash': [0.00, 0, 0.00, []]}),
+    ({}, 'Haily Joe', {'Haily Joe': [0.00, 0, 0.00, []]})
 ]
 
 NAME_LIST_PARAMS = [
