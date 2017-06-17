@@ -188,7 +188,8 @@ donation amount: ")
                 for donor in donor_info:
                     if len(str(donor_info[donor][0])) > 13:
                         big_donor = big_donor_total(donor_info[donor][0])
-                        print('\n', donor, 'has donated:', '${}'.format(big_donor))
+                        print('\n', donor, 'has donated:',
+                                           '${}'.format(big_donor))
             else:
                 print('\nYou have no donors yet.')
         elif input_one == 'q':
